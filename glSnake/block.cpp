@@ -18,9 +18,9 @@ void block::up(int n) {
 void block::render() {
     glPushMatrix();
     glTranslatef(pos.x, pos.y, 0);
-    glBegin(GL_LINE_LOOP);
+    glBegin(GL_QUADS);
     {
-        glColor3f(0, 0, 0);
+        glColor3f(1, 1, 1);
         glVertex2f(-size.x, -size.y);
         glVertex2f( size.x, -size.y);
         glVertex2f( size.x,  size.y);

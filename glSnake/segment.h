@@ -4,8 +4,6 @@
 #include "block.h"
 #include "time.h"
 
-    
-
 class segment : public block {
     
     trajectory current_trajectory;
@@ -17,5 +15,9 @@ public:
     segment(int = 0, int = 0, unsigned = 0, trajectory = ::right);
     void update();
 };
+
+void change_trajectory(trajectory);
+
+
 
 #endif

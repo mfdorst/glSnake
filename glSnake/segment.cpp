@@ -29,3 +29,8 @@ void segment::update() {
     else if (current_trajectory == ::right)
         right(1);
 }
+
+void change_trajectory(trajectory t) {
+    if (trajectory_change_event_que.size() == 0 || trajectory_change_event_que[trajectory_change_event_que.size()-1].frame() != gametime::frame+1)
+        trajectory_change_event_que.push_back(trajectory_change_event(t));
+}

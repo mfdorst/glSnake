@@ -2,6 +2,7 @@
 #include "time.h"
 
 void handleKeypress(unsigned char, int, int);
+void handleSpecialKeypress(int, int, int);
 void displayFunc();
 void updateFunc(int);
 
@@ -16,11 +17,11 @@ int main(int argc, char** argv) {
     
     glutInit(&argc, argv);
     
+    glutInitWindowSize(720, 450);
     glutCreateWindow("Snake");
     
-    glutFullScreen();
-    
     glutKeyboardFunc(handleKeypress);
+    glutSpecialFunc(handleSpecialKeypress);
     
     glutDisplayFunc(displayFunc);
     
@@ -32,7 +33,7 @@ int main(int argc, char** argv) {
 }
 
 void displayFunc() {
-    glClearColor(1, 1, 1, 1);
+    glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     
     snakey.render();
@@ -52,11 +53,28 @@ void updateFunc(int) {
 
 void handleKeypress(unsigned char key, int, int) {
     if (key == 'w')
-        trajectory_change_event_que.push_back(trajectory_change_event(up));
+        change_trajectory(up);
     if (key == 's')
-        trajectory_change_event_que.push_back(trajectory_change_event(down));
+        change_trajectory(down);
     if (key == 'a')
-        trajectory_change_event_que.push_back(trajectory_change_event(left));
+        change_trajectory(left);
     if (key == 'd')
-        trajectory_change_event_que.push_back(trajectory_change_event(right));
+        change_trajectory(right);
+    if (key == 'F') {
+        static bool fullscreen = false;
+        fullscreen = !fullscreen;
+        if (!fullscreen) glutReshapeWindow(720, 450);
+        if (fullscreen) glutFullScreen();
+    }
+}
+
+void handleSpecialKeypress(int key, int, int) {
+    if (key == GLUT_KEY_UP)
+        change_trajectory(up);
+    if (key == GLUT_KEY_DOWN)
+        change_trajectory(down);
+    if (key == GLUT_KEY_LEFT)
+        change_trajectory(left);
+    if (key == GLUT_KEY_RIGHT)
+        change_trajectory(right);
 }
