@@ -9,7 +9,7 @@ namespace gametime {
     
 }
 
-typedef enum { up, down, right, left } trajectory;
+typedef enum { up, right, down, left } trajectory;
 
 class trajectory_change_event {
     unsigned p_frame;

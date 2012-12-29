@@ -2,14 +2,15 @@
 #include "time.h"
 
 trajectory_change_event::trajectory_change_event(trajectory t) {
-    p_frame = gametime::frame;
+    p_frame = gametime::frame+1;
     p_new_trajectory = t;
 }
 
 void segment::respond_to_trajectory_change() {
     for (int i = 0; i < trajectory_change_event_que.size(); i++)
-        if (trajectory_change_event_que[i].frame() == gametime::frame+place)
-            current_trajectory = trajectory_change_event_que[i].new_trajectory();
+        if (trajectory_change_event_que[i].frame() == gametime::frame-place)
+            if ((current_trajectory + 2) % 4 != trajectory_change_event_que[i].new_trajectory())
+                current_trajectory = trajectory_change_event_que[i].new_trajectory();
 }
 
 segment::segment(int x, int y, unsigned p, trajectory t) : block(x, y) {
