@@ -4,12 +4,12 @@
 #include "mainhead.h"
 
 class block {
-    
+protected:
     vec2f pos;
     vec2f size;
     
 public:
-    block();
+    block(int = 0, int = 0);
     
     void right(int);
     void left(int n) {right(-n);}
