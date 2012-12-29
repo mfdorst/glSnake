@@ -1,9 +1,18 @@
-#ifndef glSnake_snake_h
-#define glSnake_snake_h
+#ifndef __glSnake__snake__
+#define __glSnake__snake__
 
-#include <OpenGL/OpenGL.h>
-#include <GLUT/GLUT.h>
+#include "block.h"
 
-typedef struct { float x, y; } Vec2f;
+#include <vector>
+
+class snake {
+    
+    std::vector<block> body;
+    
+public:
+    
+    
+    
+};
 
 #endif

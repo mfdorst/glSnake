@@ -1,23 +1,19 @@
 #include "snake.h"
 
-#include "block.h"
-
-namespace window {
-    const unsigned height = 720;
-    const unsigned width = 720;
-}
-
 void displayFunc();
+void updateFunc(int);
 
 int main(int argc, char** argv) {
     
     glutInit(&argc, argv);
     
-    glutInitWindowSize(window::width, window::height);
-    
     glutCreateWindow("Snake");
     
+    glutFullScreen();
+    
     glutDisplayFunc(displayFunc);
+    
+    glutTimerFunc(125, updateFunc, 0);
     
     glutMainLoop();
     
@@ -28,14 +24,15 @@ void displayFunc() {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glBegin(GL_QUADS);
-    {
-        glColor4f(0, 0, 0, 1);
-        glVertex2f(-.02, -.02);
-        glVertex2f(0.02, -.02);
-        glVertex2f(0.02, 0.02);
-        glVertex2f(-.02, 0.02);
-    }
-    glEnd();
+    //...
+    
     glFlush();
+}
+
+void updateFunc(int x) {
+    
+    //...
+    
+    glutPostRedisplay();
+    glutTimerFunc(125, updateFunc, 0);
 }
