@@ -45,10 +45,13 @@ void updateFunc(int) {
     
     gametime::frame++;
     snakey.update();
-    snakey.render();
-    
-    glutPostRedisplay();
-    glutTimerFunc(framerate, updateFunc, 0);
+    if (snakey.checkCollision() == wall)
+        /* game over */;
+    else {
+        snakey.render();
+        glutPostRedisplay();
+        glutTimerFunc(framerate, updateFunc, 0);
+    }
 }
 
 void handleKeypress(unsigned char key, int, int) {

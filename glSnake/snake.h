@@ -7,12 +7,12 @@
 
 class snake {
     
-    std::vector<segment> body;
+    std::vector<segment*> body;
     
 public:
     
     snake();
-    
+    collision checkCollision();
     void update();
     void render();
 };
