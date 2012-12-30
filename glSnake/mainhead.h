@@ -5,7 +5,7 @@
 #include <GLUT/GLUT.h>
 
 typedef struct { float x, y; } vec2f;
-typedef struct { int x, y; } coord2f;
+typedef struct { int x, y; } coord2i;
 
 namespace screen {
     const unsigned height = 900;

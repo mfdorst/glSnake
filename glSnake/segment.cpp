@@ -14,7 +14,7 @@ void segment::respond_to_trajectory_change() {
 }
 
 segment::segment(int x, int y, unsigned p, trajectory t) : block(x, y) {
-    current_trajectory = ::right;
+    current_trajectory = t;
     place = p;
 }
 

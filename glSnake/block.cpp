@@ -22,7 +22,7 @@ void block::up(int n) {
 void block::render() {
     glPushMatrix();
     glTranslatef(pos.x, pos.y, 0);
-    glBegin(GL_QUADS);
+    glBegin(GL_LINE_LOOP);
     {
         glColor3f(1, 1, 1);
         glVertex2f(-size.x, -size.y);
@@ -32,4 +32,11 @@ void block::render() {
     }
     glEnd();
     glPopMatrix();
+}
+
+void block::setCoord(int x, int y) {
+    coord.x = x;
+    coord.y = y;
+    pos.x = x*size.x*2;
+    pos.y = y*size.y*2;
 }

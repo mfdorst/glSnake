@@ -13,11 +13,11 @@ class segment : public block {
     
 public:
     segment(int = 0, int = 0, unsigned = 0, trajectory = ::right);
+    trajectory getTrajectory() {return current_trajectory;}
     void update();
+    
 };
 
 void change_trajectory(trajectory);
-
-
 
 #endif

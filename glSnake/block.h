@@ -7,7 +7,7 @@ class block {
 protected:
     vec2f pos;
     vec2f size;
-    coord2f coord;
+    coord2i coord;
     
 public:
     block(int = 0, int = 0);
@@ -18,7 +18,8 @@ public:
     void down(int n) {up(-n);}
     
     void render();
-    coord2f getCoord() {return coord;}
+    coord2i getCoord() {return coord;}
+    void setCoord(int, int);
 };
 
 #endif
