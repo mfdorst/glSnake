@@ -7,6 +7,7 @@ snake::snake() {
     body.push_back(new segment(-2, 0, 2));
     body.push_back(new segment(-3, 0, 3));
     body.push_back(new segment(-4, 0, 4));
+    body.push_back(new segment(-5, 0, 5));
 }
 
 void snake::update() {
@@ -27,20 +28,31 @@ void snake::render() {
 
 collision snake::checkCollision(block morsel) {
     /* wall collisions */
-    coord2i mcoord = morsel.getCoord();
+    coord2i bcoord = morsel.getCoord();
     coord2i scoord = body[0]->getCoord();
     trajectory t = body[0]->getTrajectory();
     if (scoord.x <= -34 || scoord.x >= 34 || scoord.y <= -21 || scoord.y >= 21)
         return wall;
     /* food collisions */
-    if (t == up && scoord.y == mcoord.y && scoord.x == mcoord.x)
+    if (t == up && scoord.y == bcoord.y && scoord.x == bcoord.x)
         return food;
-    if (t == down && scoord.y == mcoord.y && scoord.x == mcoord.x)
+    if (t == down && scoord.y == bcoord.y && scoord.x == bcoord.x)
         return food;
-    if (t == right && scoord.x == mcoord.x && scoord.y == mcoord.y)
+    if (t == right && scoord.x == bcoord.x && scoord.y == bcoord.y)
         return food;
-    if (t == left && scoord.x == mcoord.x && scoord.y == mcoord.y)
+    if (t == left && scoord.x == bcoord.x && scoord.y == bcoord.y)
         return food;
+    for (int i = 3; i < body.size(); i++) {
+        bcoord = body[i]->getCoord();
+        if (t == up && scoord.y == bcoord.y && scoord.x == bcoord.x)
+            return wall;
+        if (t == down && scoord.y == bcoord.y && scoord.x == bcoord.x)
+            return wall;
+        if (t == right && scoord.x == bcoord.x && scoord.y == bcoord.y)
+            return wall;
+        if (t == left && scoord.x == bcoord.x && scoord.y == bcoord.y)
+            return wall;
+    }
     return none;
 }
 
