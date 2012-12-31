@@ -19,12 +19,12 @@ void block::up(int n) {
     coord.y += n;
 }
 
-void block::render() {
+void block::render(GLenum method, vec3f color) {
     glPushMatrix();
     glTranslatef(pos.x, pos.y, 0);
-    glBegin(GL_LINE_LOOP);
+    glBegin(method);
     {
-        glColor3f(1, 1, 1);
+        glColor3f(color.x, color.y, color.z);
         glVertex2f(-size.x, -size.y);
         glVertex2f( size.x, -size.y);
         glVertex2f( size.x,  size.y);

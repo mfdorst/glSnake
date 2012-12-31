@@ -8,17 +8,19 @@ void updateFunc(int);
 
 snake snakey;
 block morsel;
+vec3f yellow = {1,1,0};
+vec3f green = {0,1,0};
 
 unsigned gametime::frame = 0;
 std::vector<trajectory_change_event> trajectory_change_event_que;
 
-const unsigned framerate = 67;
+const unsigned framerate = 64;
 
 int main(int argc, char** argv) {
     
     srand((unsigned)time(NULL));
     
-    morsel.setCoord(6, 3/* rand() % 35, rand() % 22 */);
+    morsel.setCoord((rand() % 68)-34, (rand() % 42)-21);
     
     glutInit(&argc, argv);
     
@@ -41,8 +43,21 @@ void displayFunc() {
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     
+    glBegin(GL_QUADS);
+    {
+        glColor3f(0.3, 0.3, 0.3);
+        glVertex2d(-1, 1);
+        glColor3f(0.15, 0.15, 0.15);
+        glVertex2d(-1, -1);
+        glColor3f(0, 0, 0);
+        glVertex2d(1, -1);
+        glColor3f(0.15, 0.15, 0.15);
+        glVertex2d(1, 1);
+    }
+    glEnd();
+    
     snakey.render();
-    morsel.render();
+    morsel.render(GL_LINE_LOOP, green);
     
     glFlush();
 }
@@ -55,8 +70,8 @@ void updateFunc(int) {
         return;
     else if (snakey.checkCollision(morsel) == food) {
         snakey.add();
+        morsel.setCoord(rand() % 35, rand() % 22);
     }
-    snakey.render();
     glutPostRedisplay();
     glutTimerFunc(framerate, updateFunc, 0);
 }

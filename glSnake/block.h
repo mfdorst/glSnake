@@ -17,7 +17,7 @@ public:
     void up(int);
     void down(int n) {up(-n);}
     
-    void render();
+    void render(GLenum = GL_QUADS, vec3f = yellow);
     coord2i getCoord() {return coord;}
     void setCoord(int, int);
 };
