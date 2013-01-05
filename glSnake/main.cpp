@@ -19,8 +19,9 @@ const unsigned framerate = 64;
 int main(int argc, char** argv) {
     
     srand((unsigned)time(NULL));
-    
-    morsel.setCoord((rand() % 68)-34, (rand() % 42)-21);
+    int x = (rand() % 66)-33;
+    int y = (rand() % 40)-20;
+    morsel.setCoord(x, y);
     
     glutInit(&argc, argv);
     
@@ -70,7 +71,9 @@ void updateFunc(int) {
         return;
     else if (snakey.checkCollision(morsel) == food) {
         snakey.add();
-        morsel.setCoord(rand() % 35, rand() % 22);
+        int x = (rand() % 66)-33;
+        int y = (rand() % 40)-20;
+        morsel.setCoord(x, y);
     }
     glutPostRedisplay();
     glutTimerFunc(framerate, updateFunc, 0);
