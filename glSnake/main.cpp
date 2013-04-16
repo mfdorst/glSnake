@@ -1,5 +1,6 @@
 #include "snake.h"
 #include "time.h"
+#include <cstdlib>
 
 void handleKeypress(unsigned char, int, int);
 void handleSpecialKeypress(int, int, int);
